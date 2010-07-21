@@ -6,4 +6,4 @@ The objects to be hooked are running processes.
  #Get process' virtual memory structure
  #Modify access point
 =Accessing process' virtual memory=
-The file /proc/<pid>/mm provides a easy access to the process' virtual memory. The file can be read as a normal plain text file. File operations like open(), read(), write() and lseek() can all be applied to this file. First byte of the file is the first bytes of the process' virtual memory address, which is 0x00000000.
+The file /proc/pid/mm provides a easy access to the process' virtual memory. The file can be read as a normal plain text file. File operations like open(), read(), write() and lseek() can all be applied to this file. First byte of the file is the first bytes of the process' virtual memory address, which is 0x00000000.

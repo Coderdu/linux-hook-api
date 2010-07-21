@@ -1,0 +1,208 @@
+00400000-00401000 r-xp 00000000 fd:00 73859102                           /home/sim/proc
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        4 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+00600000-00601000 rw-p 00000000 fd:00 73859102                           /home/sim/proc
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        4 kB
+Swap:        0 kB
+37a4e00000-37a4e1c000 r-xp 00000000 fd:00 237797683                      /lib64/ld-2.5.so
+Size:               112 kB
+Rss:                 92 kB
+Shared_Clean:        92 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37a501b000-37a501c000 r--p 0001b000 fd:00 237797683                      /lib64/ld-2.5.so
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        4 kB
+Swap:        0 kB
+37a501c000-37a501d000 rw-p 0001c000 fd:00 237797683                      /lib64/ld-2.5.so
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        4 kB
+Swap:        0 kB
+37a5e00000-37a5f4c000 r-xp 00000000 fd:00 237797684                      /lib64/libc-2.5.so
+Size:              1328 kB
+Rss:                256 kB
+Shared_Clean:       248 kB
+Shared_Dirty:         0 kB
+Private_Clean:        8 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37a5f4c000-37a614c000 ---p 0014c000 fd:00 237797684                      /lib64/libc-2.5.so
+Size:              2048 kB
+Rss:                  0 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37a614c000-37a6150000 r--p 0014c000 fd:00 237797684                      /lib64/libc-2.5.so
+Size:                16 kB
+Rss:                 16 kB
+Shared_Clean:         8 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        8 kB
+Swap:        0 kB
+37a6150000-37a6151000 rw-p 00150000 fd:00 237797684                      /lib64/libc-2.5.so
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        4 kB
+Swap:        0 kB
+37a6151000-37a6156000 rw-p 37a6151000 00:00 0 
+Size:                20 kB
+Rss:                 12 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:       12 kB
+Swap:        0 kB
+37a6600000-37a6682000 r-xp 00000000 fd:00 237797685                      /lib64/libm-2.5.so
+Size:               520 kB
+Rss:                 20 kB
+Shared_Clean:        20 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37a6682000-37a6881000 ---p 00082000 fd:00 237797685                      /lib64/libm-2.5.so
+Size:              2044 kB
+Rss:                  0 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37a6881000-37a6882000 r--p 00081000 fd:00 237797685                      /lib64/libm-2.5.so
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        4 kB
+Swap:        0 kB
+37a6882000-37a6883000 rw-p 00082000 fd:00 237797685                      /lib64/libm-2.5.so
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        4 kB
+Swap:        0 kB
+37aaa00000-37aaa0d000 r-xp 00000000 fd:00 237797689                      /lib64/libgcc_s-4.1.2-20080825.so.1
+Size:                52 kB
+Rss:                 12 kB
+Shared_Clean:        12 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37aaa0d000-37aac0d000 ---p 0000d000 fd:00 237797689                      /lib64/libgcc_s-4.1.2-20080825.so.1
+Size:              2048 kB
+Rss:                  0 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37aac0d000-37aac0e000 rw-p 0000d000 fd:00 237797689                      /lib64/libgcc_s-4.1.2-20080825.so.1
+Size:                 4 kB
+Rss:                  4 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        4 kB
+Swap:        0 kB
+37ab600000-37ab6e6000 r-xp 00000000 fd:00 5379755                        /usr/lib64/libstdc++.so.6.0.8
+Size:               920 kB
+Rss:                404 kB
+Shared_Clean:       404 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37ab6e6000-37ab8e5000 ---p 000e6000 fd:00 5379755                        /usr/lib64/libstdc++.so.6.0.8
+Size:              2044 kB
+Rss:                  0 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB
+37ab8e5000-37ab8eb000 r--p 000e5000 fd:00 5379755                        /usr/lib64/libstdc++.so.6.0.8
+Size:                24 kB
+Rss:                 24 kB
+Shared_Clean:         4 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:       20 kB
+Swap:        0 kB
+37ab8eb000-37ab8ee000 rw-p 000eb000 fd:00 5379755                        /usr/lib64/libstdc++.so.6.0.8
+Size:                12 kB
+Rss:                 12 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:       12 kB
+Swap:        0 kB
+37ab8ee000-37ab900000 rw-p 37ab8ee000 00:00 0 
+Size:                72 kB
+Rss:                  8 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        8 kB
+Swap:        0 kB
+2ac6ee0e9000-2ac6ee0eb000 rw-p 2ac6ee0e9000 00:00 0 
+Size:                 8 kB
+Rss:                  8 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        8 kB
+Swap:        0 kB
+2ac6ee110000-2ac6ee113000 rw-p 2ac6ee110000 00:00 0 
+Size:                12 kB
+Rss:                 12 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:       12 kB
+Swap:        0 kB
+7fffbc9ab000-7fffbc9c0000 rw-p 7ffffffea000 00:00 0                      [stack]
+Size:                84 kB
+Rss:                 12 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:       12 kB
+Swap:        0 kB
+ffffffffff600000-ffffffffffe00000 ---p 00000000 00:00 0                  [vdso]
+Size:              8192 kB
+Rss:                  0 kB
+Shared_Clean:         0 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+Swap:        0 kB

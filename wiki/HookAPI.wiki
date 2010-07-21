@@ -2,7 +2,6 @@
 The main purpose is to develop a Hook API for linux. There are similar hooks for windows. 
 The objects to be hooked are running processes. 
 =Framework=
- *A list
  #Access process' memory
  #Get process' virtual memory structure
  #Modify access point

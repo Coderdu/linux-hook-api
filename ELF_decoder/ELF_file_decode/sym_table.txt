@@ -1,0 +1,196 @@
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x00 -> 
+Symbol_value: 0x00
+Symbol_size: 0x00
+Symbol_type_and_binding: 0x00
+Section_index: 0x00
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x00 -> 
+Symbol_value: 0xa4e00a70
+Symbol_size: 0x00
+Symbol_type_and_binding: 0x03
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x87 -> _dl_get_tls_static_info
+Symbol_value: 0xa4e0f480
+Symbol_size: 0x15
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x184 -> GLIBC_PRIVATE
+Symbol_value: 0x00
+Symbol_size: 0x00
+Symbol_type_and_binding: 0x11
+Section_index: 0xfff1
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x170 -> GLIBC_2.3
+Symbol_value: 0x00
+Symbol_size: 0x00
+Symbol_type_and_binding: 0x11
+Section_index: 0xfff1
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x17a -> GLIBC_2.4
+Symbol_value: 0x00
+Symbol_size: 0x00
+Symbol_type_and_binding: 0x11
+Section_index: 0xfff1
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x14a -> free
+Symbol_value: 0xa4e137e0
+Symbol_size: 0x36
+Symbol_type_and_binding: 0x22
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0xe5 -> realloc
+Symbol_value: 0xa4e13940
+Symbol_size: 0x8d
+Symbol_type_and_binding: 0x22
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x11a -> _dl_allocate_tls
+Symbol_value: 0xa4e0fee0
+Symbol_size: 0x249
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x141 -> _r_debug
+Symbol_value: 0xa501cc60
+Symbol_size: 0x28
+Symbol_type_and_binding: 0x11
+Section_index: 0x15
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x28 -> __libc_stack_end
+Symbol_value: 0xa501bdf8
+Symbol_size: 0x08
+Symbol_type_and_binding: 0x11
+Section_index: 0x10
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x12b -> _dl_tls_get_addr_soft
+Symbol_value: 0xa4e0f560
+Symbol_size: 0x66
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x39 -> __libc_memalign
+Symbol_value: 0xa4e13820
+Symbol_size: 0x10c
+Symbol_type_and_binding: 0x22
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x50 -> _dl_deallocate_tls
+Symbol_value: 0xa4e0f7e0
+Symbol_size: 0xd1
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x9f -> calloc
+Symbol_value: 0xa4e139d0
+Symbol_size: 0x34
+Symbol_type_and_binding: 0x22
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0xb6 -> _dl_argv
+Symbol_value: 0xa501bba8
+Symbol_size: 0x08
+Symbol_type_and_binding: 0x11
+Section_index: 0x10
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x10f -> _dl_mcount
+Symbol_value: 0xa4e0eab0
+Symbol_size: 0x1eb
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0xed -> _dl_tls_setup
+Symbol_value: 0xa4e0faa0
+Symbol_size: 0x4f
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0xa6 -> _dl_debug_state
+Symbol_value: 0xa4e0d9f0
+Symbol_size: 0x02
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x01 -> _rtld_global
+Symbol_value: 0xa501c000
+Symbol_size: 0xac8
+Symbol_type_and_binding: 0x11
+Section_index: 0x13
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x164 -> GLIBC_2.2.5
+Symbol_value: 0x00
+Symbol_size: 0x00
+Symbol_type_and_binding: 0x11
+Section_index: 0xfff1
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x78 -> __tls_get_addr
+Symbol_value: 0xa4e0fd90
+Symbol_size: 0x145
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x0e -> _dl_make_stack_executable
+Symbol_value: 0xa4e10240
+Symbol_size: 0x93
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x49 -> malloc
+Symbol_value: 0xa4e13930
+Symbol_size: 0x0d
+Symbol_type_and_binding: 0x22
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0xbf -> _dl_allocate_tls_init
+Symbol_value: 0xa4e0f660
+Symbol_size: 0x17f
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0xd5 -> _rtld_global_ro
+Symbol_value: 0xa501bbc0
+Symbol_size: 0x108
+Symbol_type_and_binding: 0x11
+Section_index: 0x10
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0x63 -> __libc_enable_secure
+Symbol_value: 0xa501bdf0
+Symbol_size: 0x04
+Symbol_type_and_binding: 0x11
+Section_index: 0x10
+---------------------------- Symbol table end ---------------------------------
+---------------------------- Symbol table start -------------------------------
+Symbol_index_and_name: 0xfb -> _dl_rtld_di_serinfo
+Symbol_value: 0xa4e07670
+Symbol_size: 0x559
+Symbol_type_and_binding: 0x12
+Section_index: 0x0a
+---------------------------- Symbol table end ---------------------------------

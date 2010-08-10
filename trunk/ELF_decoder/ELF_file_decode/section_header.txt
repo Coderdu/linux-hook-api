@@ -1,0 +1,336 @@
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x00 -> 
+(Section type)sh_type: 0x00
+(Section flags)sh_flags: 0x00
+(Section virtual addr at execution)sh_addr: 0x00
+(Section file offset)sh_offset: 0x00
+(Section size in bytes)sh_size: 0x00
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x00
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x4f -> .hash
+(Section type)sh_type: 0x05
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e00190
+(Section file offset)sh_offset: 0x190
+(Section size in bytes)sh_size: 0xbc
+(Link to another section)sh_link: 0x03
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x04
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x4b -> .gnu.hash
+(Section type)sh_type: 0x6ffffff6
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e00250
+(Section file offset)sh_offset: 0x250
+(Section size in bytes)sh_size: 0xdc
+(Link to another section)sh_link: 0x03
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x64 -> .dynsym
+(Section type)sh_type: 0x0b
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e00330
+(Section file offset)sh_offset: 0x330
+(Section size in bytes)sh_size: 0x2a0
+(Link to another section)sh_link: 0x04
+(Additional section information)sh_info: 0x02
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x18
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xb0 -> .dynstr
+(Section type)sh_type: 0x03
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e005d0
+(Section file offset)sh_offset: 0x5d0
+(Section size in bytes)sh_size: 0x192
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x01
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x7e -> .gnu.version
+(Section type)sh_type: 0x6fffffff
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e00762
+(Section file offset)sh_offset: 0x762
+(Section size in bytes)sh_size: 0x38
+(Link to another section)sh_link: 0x03
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x02
+(Entry size if section holds table)sh_entsize: 0x02
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x32 -> .gnu.version_d
+(Section type)sh_type: 0x6ffffffd
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e007a0
+(Section file offset)sh_offset: 0x7a0
+(Section size in bytes)sh_size: 0xa4
+(Link to another section)sh_link: 0x04
+(Additional section information)sh_info: 0x05
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x8b -> .rela.dyn
+(Section type)sh_type: 0x04
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e00848
+(Section file offset)sh_offset: 0x848
+(Section size in bytes)sh_size: 0x150
+(Link to another section)sh_link: 0x03
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x18
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xd6 -> .rela.plt
+(Section type)sh_type: 0x04
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e00998
+(Section file offset)sh_offset: 0x998
+(Section size in bytes)sh_size: 0x78
+(Link to another section)sh_link: 0x03
+(Additional section information)sh_info: 0x09
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x18
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xdb -> .plt
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x06
+(Section virtual addr at execution)sh_addr: 0xa4e00a10
+(Section file offset)sh_offset: 0xa10
+(Section size in bytes)sh_size: 0x60
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x04
+(Entry size if section holds table)sh_entsize: 0x10
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xee -> .text
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x06
+(Section virtual addr at execution)sh_addr: 0xa4e00a70
+(Section file offset)sh_offset: 0xa70
+(Section size in bytes)sh_size: 0x15c8e
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x10
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x6c -> __libc_freeres_fn
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x06
+(Section virtual addr at execution)sh_addr: 0xa4e16700
+(Section file offset)sh_offset: 0x16700
+(Section size in bytes)sh_size: 0x4c1
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x10
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x07 -> .rodata
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e16be0
+(Section file offset)sh_offset: 0x16be0
+(Section size in bytes)sh_size: 0x3220
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x20
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xa2 -> .eh_frame_hdr
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e19e00
+(Section file offset)sh_offset: 0x19e00
+(Section size in bytes)sh_size: 0x534
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x04
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x41 -> .eh_frame
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x02
+(Section virtual addr at execution)sh_addr: 0xa4e1a338
+(Section file offset)sh_offset: 0x1a338
+(Section size in bytes)sh_size: 0x1668
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xca -> .ctors
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x03
+(Section virtual addr at execution)sh_addr: 0xa501bb90
+(Section file offset)sh_offset: 0x1bb90
+(Section size in bytes)sh_size: 0x08
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x95 -> .data.rel.ro
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x03
+(Section virtual addr at execution)sh_addr: 0xa501bba0
+(Section file offset)sh_offset: 0x1bba0
+(Section size in bytes)sh_size: 0x268
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x20
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x29 -> .dynamic
+(Section type)sh_type: 0x06
+(Section flags)sh_flags: 0x03
+(Section virtual addr at execution)sh_addr: 0xa501be08
+(Section file offset)sh_offset: 0x1be08
+(Section size in bytes)sh_size: 0x190
+(Link to another section)sh_link: 0x04
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x10
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xe9 -> .got
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x03
+(Section virtual addr at execution)sh_addr: 0xa501bf98
+(Section file offset)sh_offset: 0x1bf98
+(Section size in bytes)sh_size: 0x58
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x08
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x01 -> .data
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x03
+(Section virtual addr at execution)sh_addr: 0xa501c000
+(Section file offset)sh_offset: 0x1c000
+(Section size in bytes)sh_size: 0xae0
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x20
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xb8 -> __libc_subfreeres
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x03
+(Section virtual addr at execution)sh_addr: 0xa501cae0
+(Section file offset)sh_offset: 0x1cae0
+(Section size in bytes)sh_size: 0x08
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xd1 -> .bss
+(Section type)sh_type: 0x08
+(Section flags)sh_flags: 0x03
+(Section virtual addr at execution)sh_addr: 0xa501cb00
+(Section file offset)sh_offset: 0x1cae8
+(Section size in bytes)sh_size: 0x188
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x20
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xe0 -> .comment
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x00
+(Section virtual addr at execution)sh_addr: 0x00
+(Section file offset)sh_offset: 0x1cae8
+(Section size in bytes)sh_size: 0x844
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x01
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x0f -> .symtab
+(Section type)sh_type: 0x02
+(Section flags)sh_flags: 0x00
+(Section virtual addr at execution)sh_addr: 0x00
+(Section file offset)sh_offset: 0x1d330
+(Section size in bytes)sh_size: 0x27a8
+(Link to another section)sh_link: 0x18
+(Additional section information)sh_info: 0x18d
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x18
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x17 -> .strtab
+(Section type)sh_type: 0x03
+(Section flags)sh_flags: 0x00
+(Section virtual addr at execution)sh_addr: 0x00
+(Section file offset)sh_offset: 0x1fad8
+(Section size in bytes)sh_size: 0x1586
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x01
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x55 -> .gnu_debuglink
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x00
+(Section virtual addr at execution)sh_addr: 0x00
+(Section file offset)sh_offset: 0x21060
+(Section size in bytes)sh_size: 0x14
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x04
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0xf4 -> .gnu.prelink_undo
+(Section type)sh_type: 0x01
+(Section flags)sh_flags: 0x00
+(Section virtual addr at execution)sh_addr: 0x00
+(Section file offset)sh_offset: 0x21078
+(Section size in bytes)sh_size: 0x810
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x08
+(Entry size if section holds table)sh_entsize: 0x01
+---------------------------- Section entry end --------------------------------
+---------------------------- Section entry start ------------------------------
+(Section name (string tbl index))sh_name: 0x1f -> .shstrtab
+(Section type)sh_type: 0x03
+(Section flags)sh_flags: 0x00
+(Section virtual addr at execution)sh_addr: 0x00
+(Section file offset)sh_offset: 0x2188c
+(Section size in bytes)sh_size: 0x106
+(Link to another section)sh_link: 0x00
+(Additional section information)sh_info: 0x00
+(Section alignment)sh_addralign: 0x01
+(Entry size if section holds table)sh_entsize: 0x00
+---------------------------- Section entry end --------------------------------

@@ -5,23 +5,42 @@
 
 using namespace std;
 
-const int OFFSET = 0x400000;
-int main()
+//const long long OFFSET = 0x37a4e00000;
+const long long OFFSET = 0x400000;
+int main(int argc, char **argv)
 {
-		printf("My PID: %d\n", getpid());
+		if(argc < 2)
+		{
+				printf("Please give pid.\n");
+				return 1;
+		}
+		printf("My PID: %s\n", *(argv + 1));
 		char mem_name[25];
-		sprintf(mem_name, "/proc/%d/mem", getpid());
+		sprintf(mem_name, "/proc/%s/mem", *(argv + 1));
 		printf("%s\n", mem_name);
 
-		int fid = open(mem_name, O_RDONLY);
+		int fid = open(mem_name, O_RDWR);
 		
-		unsigned char buf[16000];
-		lseek(fid, OFFSET, SEEK_SET);
-		read(fid, buf, 16000);
+		if(fid < 0)
+		{
+				perror("Open file error");
+				return fid;
+		}
 
+		unsigned char buf[16000];
+		lseek64(fid, OFFSET, SEEK_SET);
+		//read(fid, buf, 16000);
+		//write(fid, "Hello world", 10);
+		//lseek(fid, -10, SEEK_CUR);
+		read(fid, buf, 1600);
+		//buf[10] = '\0??';
+		printf("String: %x\n", buf[0]);
+
+		printf("FID: %d\n", fid);
+		sleep(1);
 		close(fid);
 
-		for(int i = 0;i<16000;i++)
+		for(int i = 0;i<1600;i++)
 		{
 				if(i && i % 16 == 0)
 						printf("\n");

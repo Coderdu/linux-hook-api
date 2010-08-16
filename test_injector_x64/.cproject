@@ -38,7 +38,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.593927815" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1754664729" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.other.2017856714" name="Other options (-Xlinker [option])" superClass="gnu.cpp.link.option.other" valueType="stringList">
-									<listOptionValue builtIn="false" value="-rpath=/home/fify/Project/HookAPI/injector_api_x64/Debug"/>
+									<listOptionValue builtIn="false" value="-rpath=${workspace_loc:/injector_api_x64/Debug}"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1933862279" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="Injector"/>

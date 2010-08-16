@@ -8,6 +8,8 @@
 #ifndef ELF_UTILS_H_
 #define ELF_UTILS_H_
 
+#include "headers.h"
+
 namespace ElfParser
 {
 

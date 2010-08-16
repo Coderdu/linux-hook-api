@@ -11,10 +11,10 @@
 #include <string.h>
 #include <vector>
 
-#include "utils.h"
-#include "elf_parser_api/headers.h"
-#include "elf_parser_api/utils.h"
-#include "elf_parser_api/elf_parser.h"
+#include "elf_parser_api_x64/utils.h"
+#include "elf_parser_api_x64/headers.h"
+#include "elf_parser_api_x64/utils.h"
+#include "elf_parser_api_x64/elf_parser.h"
 
 using std::cout;
 using std::endl;

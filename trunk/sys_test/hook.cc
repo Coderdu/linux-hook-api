@@ -30,7 +30,6 @@ int main(int argc, char **argv)
 		//}
 
 		//printf("Mapped address: 0x%x\n", (long long)p);
-		lseek(fid, 
 
 
 		return 0;

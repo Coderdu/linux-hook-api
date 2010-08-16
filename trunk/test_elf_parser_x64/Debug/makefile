@@ -37,19 +37,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: test_elf_parser
+all: test_elf_parser_x64
 
 # Tool invocations
-test_elf_parser: $(OBJS) $(USER_OBJS)
+test_elf_parser_x64: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/fify/Project/HookAPI/elf_parser_api/Debug" -Xlinker -rpath=/home/fify/Project/HookAPI/elf_parser_api/Debug -o"test_elf_parser" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/fify/Project/linux-hook-api/elf_parser_api_x64/Debug" -Xlinker -rpath=/home/fify/Project/linux-hook-api/elf_parser_api_x64/Debug -o"test_elf_parser_x64" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) test_elf_parser
+	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) test_elf_parser_x64
 	-@echo ' '
 
 .PHONY: all clean dependents

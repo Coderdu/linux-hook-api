@@ -43,7 +43,7 @@ all: test_injector_x64
 test_injector_x64: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/fify/Project/HookAPI/injector_api_x64/Debug" -Xlinker -rpath=/home/fify/Project/HookAPI/injector_api_x64/Debug -o"test_injector_x64" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/fify/Project/linux-hook-api/injector_api_x64/Debug" -Xlinker -rpath=/home/fify/Project/linux-hook-api/injector_api_x64/Debug -o"test_injector_x64" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

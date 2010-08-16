@@ -26,7 +26,7 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1345063463" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1984780142" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1972647546" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:}&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.warnings.nowarn.1346123003" name="Inhibit all warnings (-w)" superClass="gnu.cpp.compiler.option.warnings.nowarn" value="false" valueType="boolean"/>
 								<option id="gnu.cpp.compiler.option.other.other.1345114790" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
@@ -40,13 +40,13 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1208321801" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1425796004" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.paths.975704265" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/elf_parser_api/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/elf_parser_api_x64/Debug}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.2119134694" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="ElfParser"/>
 								</option>
 								<option id="gnu.cpp.link.option.other.496195374" name="Other options (-Xlinker [option])" superClass="gnu.cpp.link.option.other" valueType="stringList">
-									<listOptionValue builtIn="false" value="-rpath=/home/fify/Project/HookAPI/elf_parser_api/Debug"/>
+									<listOptionValue builtIn="false" value="-rpath=${workspace_loc:/elf_parser_api_x64/Debug}"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.416541219" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

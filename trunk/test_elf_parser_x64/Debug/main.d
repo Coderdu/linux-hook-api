@@ -1,18 +1,16 @@
-main.d main.o: ../main.cc ../utils.h \
-  /home/fify/Project/HookAPI/elf_parser_api/headers.h \
-  /home/fify/Project/HookAPI/elf_parser_api/elf_types.h \
-  /home/fify/Project/HookAPI/elf_parser_api/utils.h \
-  /home/fify/Project/HookAPI/elf_parser_api/elf_parser.h \
-  /home/fify/Project/HookAPI/elf_parser_api/headers.h
+main.d main.o: ../main.cc \
+  /home/fify/Project/linux-hook-api/elf_parser_api_x64/utils.h \
+  /home/fify/Project/linux-hook-api/elf_parser_api_x64/headers.h \
+  /home/fify/Project/linux-hook-api/elf_parser_api_x64/elf_types.h \
+  /home/fify/Project/linux-hook-api/elf_parser_api_x64/headers.h \
+  /home/fify/Project/linux-hook-api/elf_parser_api_x64/elf_parser.h
 
-../utils.h:
+/home/fify/Project/linux-hook-api/elf_parser_api_x64/utils.h:
 
-/home/fify/Project/HookAPI/elf_parser_api/headers.h:
+/home/fify/Project/linux-hook-api/elf_parser_api_x64/headers.h:
 
-/home/fify/Project/HookAPI/elf_parser_api/elf_types.h:
+/home/fify/Project/linux-hook-api/elf_parser_api_x64/elf_types.h:
 
-/home/fify/Project/HookAPI/elf_parser_api/utils.h:
+/home/fify/Project/linux-hook-api/elf_parser_api_x64/headers.h:
 
-/home/fify/Project/HookAPI/elf_parser_api/elf_parser.h:
-
-/home/fify/Project/HookAPI/elf_parser_api/headers.h:
+/home/fify/Project/linux-hook-api/elf_parser_api_x64/elf_parser.h:

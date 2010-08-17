@@ -87,6 +87,13 @@ int main(int argc, char *argv[])
 	wait(NULL);
 
 	cout << "Putting back the original code." << endl;
+	cout << "Press <Enter> to continue." << endl;
+	getchar();
+
+	ptrace_write(traced_process, addr, backup, len);
+	ptrace(PTRACE_SETREGS, traced_process, NULL, &oldregs);
+
+	ptrace(PTRACE_DETACH, traced_process, NULL, NULL);
 
 	return 0;
 }

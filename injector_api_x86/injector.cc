@@ -22,28 +22,6 @@
 namespace Injector
 {
 
-void call_dl_open(pid_t pid, Elf32_Addr addr, char *libname)
-{
-	void *pRLibName;
-	struct user_regs_struct regs;
-
-	/*
-	  先找个空间存放要装载的共享库名，我们可以简单的把它放入堆栈
-	 */
-	pRLibName = ptrace_push(pid, libname, strlen(libname) + 1);
-
-	/* 设置参数到寄存器 */
-	ptrace_readreg(pid, regs);
-	regs.eax = (unsigned long) pRLibName;
-	regs.ecx = 0x0;
-	regs.edx = RTLD_LAZY;
-	ptrace_writereg(pid, regs);
-
-	/* 调用_dl_open */
-	ptrace_call(pid, addr);
-	puts("call _dl_open ok");
-}
-
 int _do_inject(pid_t pid, Elf32_Addr dlopen_addr, char *so_file)
 {
 	char buf1[1024], buf2[1024];
@@ -52,7 +30,7 @@ int _do_inject(pid_t pid, Elf32_Addr dlopen_addr, char *so_file)
 	Elf32_Addr addr;
 
 	char *so = realpath(so_file, NULL);
-	printf("Read Path: %s\n", so);
+
 	if(!so)
 	{
 		perror("Get full path name");

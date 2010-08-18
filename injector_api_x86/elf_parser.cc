@@ -18,10 +18,6 @@
 
 using std::ifstream;
 
-#ifdef DEBUG
-#include "utils.h"
-#endif
-
 namespace Injector
 {
 
@@ -95,8 +91,6 @@ void get_linkmap(int pid, struct link_map &map)
 
 	phdr_addr = IMAGE_ADDR + ehdr->e_phoff;
 
-	printf("phdr_addr\t %p\n", (void *)phdr_addr);
-
 	// Read the Program header, and store it into "phdr".
 	ptrace_read(pid, phdr_addr, phdr, sizeof(Elf32_Phdr));
 
@@ -108,8 +102,6 @@ void get_linkmap(int pid, struct link_map &map)
 	}
 
 	dyn_addr = phdr->p_vaddr;
-
-	printf("dyn_addr\t %p\n", (void*)dyn_addr);
 
 	// Read a Dynamic Entry from "dyn_addr" and store it into "dyn".
 	ptrace_read(pid, dyn_addr, dyn, sizeof(Elf32_Dyn));
@@ -123,12 +115,10 @@ void get_linkmap(int pid, struct link_map &map)
 	}
 
 	got = dyn->d_un.d_ptr;
-	printf("GOT\t\t %p\n", (void *)got);
 
 	// Read the link_map address from the GOT, and store it into "map_addr".
 	ptrace_read(pid, got + sizeof(Elf32_Addr), &map_addr, sizeof(Elf32_Addr));
 
-	printf("map_addr\t %p\n", (void*)map_addr);
 	// Read the link_map from the "map_addr" and store it into "map".
 	ptrace_read(pid, map_addr, &map, sizeof(struct link_map));
 
@@ -148,12 +138,6 @@ void get_sym_info(int pid, struct link_map *lm, SymInfo &info)
 
 	dyn_addr = (unsigned long) lm->l_ld;
 
-#ifdef DEBUG
-	char buf[64];
-	ptrace_read(pid, lm->l_addr, buf, 64);
-	printf("Base Address: %x\n", lm->l_addr);
-	Injector::print_hex(buf, 64);
-#endif
 	ptrace_read(pid, dyn_addr, dyn, sizeof(Elf32_Dyn));
 
 	while (dyn->d_tag != DT_NULL)
@@ -207,14 +191,6 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name)
 	unsigned long sym_addr;
 	char str[128];
 
-#ifdef DEBUG_PASS
-	printf("find_symbol(%d, xx, %s)\n", pid, sym_name);
-
-	str = ptrace_readstr(pid, (Elf32_Addr) map->l_name);
-	printf(">-------- %s --------<\n", str);
-	free(str);
-#endif
-
 	sym_addr = find_symbol_in_linkmap(pid, map, sym_name);
 	if (sym_addr)
 		return sym_addr;
@@ -235,8 +211,6 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name)
 		if (str[0] == '\0')
 			continue;
 
-		printf("Find link in: [%s]\n", str);
-
 		if ((sym_addr = find_symbol_in_linkmap(pid, lm, sym_name)))
 			break;
 	}
@@ -247,11 +221,6 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name)
 Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 		char *sym_name)
 {
-#ifdef DEBUG_PASS
-	printf("find_symbol_in_linkmap(%d, xx, %s)\n", pid, sym_name);
-
-	printf("Addr: %08x, LD: %08x\n", lm->l_addr, lm->l_ld);
-#endif
 	Elf32_Ehdr e_hdr;				// ELF Header.
 	Elf32_Shdr s_hdr;				// ELF Section Header.
 	Elf32_Sym sym;					// ELF Symbol Header.
@@ -273,13 +242,8 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 
 	ifstream ifs;
 
-	//if(lm->l_addr == 0)
-	//	return 0;
-
 	lib_name = p_maps.get_libfile_by_addr(lm->l_addr, pid);
-#ifdef DEBUG
-	printf("lib_name = %s\n", lib_name.c_str());
-#endif
+
 	ifs.open(lib_name.c_str());
 
 	// Read ELF header.
@@ -292,34 +256,11 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 		return 0;
 	}
 
-#ifdef DEBUG_PASS
-	char *p = new char[0x1000*3 + 1];
-	ptrace_read(pid, lm->l_addr, p, 0x1000*3);
-	print_hex(p, 0x1000);
-	sleep(3);
-	print_hex(p + 0x1000, 0x1000);
-	sleep(3);
-	print_hex(p + 0x2000, 0x1000);
-	sleep(3);
-
-	print_hex((char *)&e_hdr, sizeof(e_hdr));
-	printf("-----------------------------------------------\n");
-	printf("0x%08x-0x%08x-%d-\n", lm->l_addr, e_hdr.e_shoff, e_hdr.e_shstrndx);
-#endif
 	// Read the section header that points to the "Section Name String Table".
 	ifs.seekg(e_hdr.e_shoff + e_hdr.e_shstrndx * sizeof(Elf32_Shdr), ifs.beg);
 	ifs.read((char *)&s_hdr, sizeof(Elf32_Shdr));
 	//ptrace_read(pid, lm->l_addr + e_hdr.e_shoff + e_hdr.e_shstrndx * sizeof(Elf32_Shdr), &s_hdr, sizeof(Elf32_Shdr));
 
-#ifdef DEBUG_PASS
-	printf("SHeader Location: %08x\n", lm->l_addr + e_hdr.e_shoff + e_hdr.e_shstrndx * sizeof(Elf32_Shdr));
-	printf("********************* offset within the file: %x\n", e_hdr.e_shoff + e_hdr.e_shstrndx * sizeof(Elf32_Shdr));
-	printf("Before allocating: %u %u\n", s_hdr.sh_size, s_hdr.sh_entsize);
-	printf("Section type: %x\n", s_hdr.sh_type);
-
-	if(s_hdr.sh_size > 100000)
-		return 0;
-#endif
 	sec_name_str_table = new char[s_hdr.sh_size + 1];
 
 	// Read in section name string table.
@@ -327,9 +268,6 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 	ifs.read(sec_name_str_table, s_hdr.sh_size);
 	//ptrace_read(pid, lm->l_addr + s_hdr.sh_offset, sec_name_str_table, s_hdr.sh_size);
 
-#ifdef DEBUG_PASS
-	print_hex(sec_name_str_table, s_hdr.sh_size);
-#endif
 	//off = e_hdr.e_shoff;
 	ifs.seekg(e_hdr.e_shoff, ifs.beg);
 	for(int i = 0;i<e_hdr.e_shnum;i++)
@@ -337,10 +275,6 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 		ifs.read((char *)&s_hdr, e_hdr.e_shentsize);
 		//ptrace_read(pid, lm->l_addr + e_hdr.e_shoff + e_hdr.e_shentsize * i, &s_hdr, sizeof(s_hdr));
 
-#ifdef DEBUG_PASS
-		printf("Section name: %s\n", sec_name_str_table + s_hdr.sh_name);
-		printf("s_hdr.sh_addr - s_hdr.sh_offset = %x\n", s_hdr.sh_addr - s_hdr.sh_offset);
-#endif
 		if(strcmp(sec_name_str_table + s_hdr.sh_name, ".dynsym") == 0)
 		{
 			symTblFileOff = s_hdr.sh_offset;
@@ -358,9 +292,6 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 	ifs.seekg(symNameStrTblFileOff, ifs.beg);
 	ifs.read(sym_name_str_table, symNameStrTblSize);
 	//ptrace_read(pid, lm->l_addr + symNameStrTblFileOff, sym_name_str_table, symNameStrTblSize);
-#ifdef DEBUG_PASS
-	print_hex(sym_name_str_table, symNameStrTblFileOff);
-#endif
 	ifs.seekg(symTblFileOff, ifs.beg);
 	for(unsigned i = 0;i<symTblNum;i++)
 	{
@@ -368,9 +299,6 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 		ifs.read((char *)&sym, sizeof(Elf32_Sym));
 		//ptrace_read(pid, lm->l_addr + symTblFileOff + sizeof(Elf32_Sym) * i, &sym, sizeof(sym));
 
-#ifdef DEBUG_PASS
-		printf("Looking up: %s, address: %x\n", sym_name_str_table + sym.st_name, sym.st_value);
-#endif
 		if(strcmp(sym_name_str_table + sym.st_name, sym_name) == 0)
 		{
 			// offset = sym.st_value - Elf32_Shdr.sh_addr + Elf32_Shdr.sh_offset;
@@ -388,93 +316,8 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 
 	ret = p_maps.get_vaddr_by_off(lm->l_addr, off, pid);
 
-#ifdef DEBUG
-	printf("sym.st_value = 0x%08x, ret = 0x%08x\n", sym.st_value, ret);
-	char buf[256];
-	if(!ret)
-		return ret;
-	ptrace_read(pid, ret, buf, sym.st_size);
-	print_hex(buf, sym.st_size);
-#endif
 	return ret;
 }
-#if 0
-/*
- 在指定的link_map指向的符号表查找符号，它仅仅是被上面的find_symbol使用
- */
-Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
-		char *sym_name)
-{
-	Elf32_Sym *sym = (Elf32_Sym *) malloc(sizeof(Elf32_Sym));
-	unsigned int i;
-	char str[128];
-	unsigned long ret;
-	SymInfo info;
-
-	// TODO: Problem is here!
-	get_sym_info(pid, lm, info);
-
-	printf("nchains = %d:sym_name = %s\n", info.nchains, sym_name);
-	sleep(3);
-
-#ifdef DEBUG
-	if(info.nchains <= 0)
-	{
-		printf("Get nchains error.\n");
-		sleep(100);
-	}
-#endif
-
-	for (i = 0; i < info.nchains; i++)
-	{
-#ifdef DEBUG_PASS
-		printf("start of loop: %d.\n", i);
-#endif
-		ptrace_read(pid, info.symtab + i * sizeof(Elf32_Sym), sym, sizeof(Elf32_Sym));
-
-		if (!sym->st_name || !sym->st_size || !sym->st_value)
-			continue;
-
-		/*    因为我还要通过此函数解析非函数类型的符号，因此将此处封上了
-		 if (ELF32_ST_TYPE(sym->st_info) != STT_FUNC)
-		 continue;
-		 */
-
-#ifdef DEBUG_PASS
-		printf("Starting ptrace_readstr()\n");
-#endif
-		ptrace_readstr(pid, info.strtab + sym->st_name, str, sizeof(str));
-
-#ifdef DEBUG_PASS
-		printf("ptrace_readstr() end.\n");
-		printf("Symbol name(find_symbol_in_linkmap()): %s\n", str);
-		printf("test float overflow.\n");
-#endif
-
-		if (strcmp(str, sym_name) == 0)
-		{
-			ptrace_readstr(pid, (unsigned long) lm->l_name, str, sizeof(str));
-			printf("lib name [%s]\n", str);
-			break;
-		}
-#ifdef DEBUG_PASS
-		printf("end of loop: %d.\n", i);
-#endif
-	}
-
-	if (i == info.nchains)
-		ret = 0;
-	else
-		ret = lm->l_addr + sym->st_value;
-
-	free(sym);
-
-#ifdef DEBUG
-	printf("------------------------------------------------------------\n");
-#endif
-	return ret;
-}
-#endif
 
 /* 查找符号的重定位地址 */
 unsigned long find_sym_in_rel(int pid, Elf32_Addr dyn_addr, char *sym_name)
@@ -540,7 +383,6 @@ void get_dyn_info(int pid, Elf32_Addr dyn_addr, DynInfo &info)
 		case DT_JMPREL:
 			info.jmprel = dyn->d_un.d_ptr;
 			//puts("DT_JMPREL");
-			printf("jmprel\t %p\n", (void *)info.jmprel);
 			break;
 		case DT_PLTRELSZ:
 			info.totalrelsize = dyn->d_un.d_val;

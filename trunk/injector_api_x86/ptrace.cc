@@ -31,9 +31,6 @@ void ptrace_attach(pid_t pid)
 	waitpid(pid, NULL, WUNTRACED);
 
 	ptrace_readreg(pid, oldregs);
-#if 0
-	restart_syscall();
-#endif
 }
 
 // Never stop
@@ -215,17 +212,6 @@ void ptrace_call(pid_t pid, unsigned long addr)
 	while (!WIFSIGNALED(stat))
 		waitpid(pid, &stat, WNOHANG);
 }
-
-#if 0
-void restart_syscall(void)
-{
-	if (oldregs.eax != oldregs.orig_eax && oldregs.orig_eax != 0xffffff00)
-	{
-		oldregs.eip -= 2;
-		oldregs.eax = oldregs.orig_eax;
-	}
-}
-#endif
 
 void ptrace_call_special(pid_t pid, unsigned long addr)
 {

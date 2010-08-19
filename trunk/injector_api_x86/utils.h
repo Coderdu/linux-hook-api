@@ -22,7 +22,6 @@ void print_sym(Elf32_Sym *sym_ptr, char * SymNamStrTable = NULL, FILE *file = NU
 
 void print_hex(char *data, long long len);
 
-
 }// End of namespace.
 
 #endif /* UTILS_H_ */

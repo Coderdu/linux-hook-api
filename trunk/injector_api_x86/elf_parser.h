@@ -27,7 +27,7 @@ void get_linkmap(int pid, struct link_map &map);
  解析指定符号
  */
 Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name);
-
+Elf32_Off find_symbol_in_file(const char *file_name, char *sym_name);
 
 /* 查找符号的重定位地址 */
 unsigned long find_sym_in_rel(int pid, char *sym_name);

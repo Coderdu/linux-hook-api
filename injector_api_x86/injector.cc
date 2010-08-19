@@ -80,6 +80,7 @@ void inject_so(pid_t pid, char *so_name)
 	get_linkmap(pid, map);
 
 	sym_addr = find_symbol(pid, &map, (char *)"__libc_dlopen_mode");
+	//printf("Symbol Addr: 0x%08x\n", sym_addr);
 
 	_do_inject(pid, sym_addr, so_name);
 

@@ -211,6 +211,8 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name)
 		if (str[0] == '\0')
 			continue;
 
+		//printf("Finding in file [%s]\n", str);
+
 		if ((sym_addr = find_symbol_in_linkmap(pid, lm, sym_name)))
 			break;
 	}
@@ -221,11 +223,29 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name)
 Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 		char *sym_name)
 {
+	Elf32_Addr ret = 0;
+	Elf32_Off off;
+
+	string lib_name; 				// The dynamic library file name.
+
+	lib_name = p_maps.get_libfile_by_addr(lm->l_addr, pid);
+
+	off = find_symbol_in_file(lib_name.c_str(), sym_name);
+	if(off == 0)
+	{
+		return ret;
+	}
+
+	ret = p_maps.get_vaddr_by_off(lm->l_addr, off, pid);
+
+	return ret;
+}
+
+Elf32_Off find_symbol_in_file(const char *file_name, char *sym_name)
+{
 	Elf32_Ehdr e_hdr;				// ELF Header.
 	Elf32_Shdr s_hdr;				// ELF Section Header.
 	Elf32_Sym sym;					// ELF Symbol Header.
-
-	Elf32_Off off;					// For temporary use.
 
 	Elf32_Addr ret = 0;
 
@@ -242,9 +262,7 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 
 	ifstream ifs;
 
-	lib_name = p_maps.get_libfile_by_addr(lm->l_addr, pid);
-
-	ifs.open(lib_name.c_str());
+	ifs.open(file_name);
 
 	// Read ELF header.
 	ifs.seekg(ifs.beg);
@@ -299,12 +317,13 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 		ifs.read((char *)&sym, sizeof(Elf32_Sym));
 		//ptrace_read(pid, lm->l_addr + symTblFileOff + sizeof(Elf32_Sym) * i, &sym, sizeof(sym));
 
+		//printf("%s\n", sym_name_str_table + sym.st_name);
 		if(strcmp(sym_name_str_table + sym.st_name, sym_name) == 0)
 		{
 			// offset = sym.st_value - Elf32_Shdr.sh_addr + Elf32_Shdr.sh_offset;
 			ifs.seekg(e_hdr.e_shoff + sym.st_shndx * e_hdr.e_shentsize, ifs.beg);
 			ifs.read((char *)&s_hdr, sizeof(Elf32_Shdr));
-			off = sym.st_value - s_hdr.sh_addr + s_hdr.sh_offset;
+			ret = sym.st_value - s_hdr.sh_addr + s_hdr.sh_offset;
 			break;
 		}
 	}
@@ -313,8 +332,6 @@ Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm,
 	delete sym_name_str_table;
 
 	ifs.close();
-
-	ret = p_maps.get_vaddr_by_off(lm->l_addr, off, pid);
 
 	return ret;
 }

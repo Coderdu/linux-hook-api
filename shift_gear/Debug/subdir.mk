@@ -4,32 +4,20 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CC_SRCS += \
-../ProcessMaps.cc \
-../elf_parser.cc \
-../injector.cc \
-../ptrace.cc \
-../utils.cc 
+../main.cc 
 
 OBJS += \
-./ProcessMaps.o \
-./elf_parser.o \
-./injector.o \
-./ptrace.o \
-./utils.o 
+./main.o 
 
 CC_DEPS += \
-./ProcessMaps.d \
-./elf_parser.d \
-./injector.d \
-./ptrace.d \
-./utils.d 
+./main.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 %.o: ../%.cc
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
+	g++ -I"/home/fify/Project/linux-hook-api" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

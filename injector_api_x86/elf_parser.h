@@ -30,7 +30,7 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name);
 Elf32_Off find_symbol_in_file(const char *file_name, char *sym_name);
 
 /* 查找符号的重定位地址 */
-unsigned long find_sym_in_rel(int pid, char *sym_name);
+Elf32_Addr find_sym_in_rel(int pid, struct link_map *map, char *sym_name);
 
 /*
  在进程自身的映象中（即不包括动态共享库，无须遍历link_map链表）获得各种动态信息

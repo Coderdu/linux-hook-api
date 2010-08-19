@@ -16,6 +16,8 @@
 #include <vector>
 #include <fstream>
 
+#include "utils.h"
+
 using std::ifstream;
 
 namespace Injector
@@ -54,9 +56,21 @@ public:
 	Elf32_Word hashTblNum;
 };
 
-typedef SymInfo DynInfo;
+class DynInfo
+{
+public:
+	Elf32_Addr symtab;
+	Elf32_Addr strtab;
+	Elf32_Addr jmprel;
+	Elf32_Word totalrelsize;
+	Elf32_Word relsize;
+	Elf32_Word nrels;
+	Elf32_Word nchains;
 
-void get_dyn_info(int pid, Elf32_Addr dyn_addr, DynInfo &info);
+	Elf32_Addr dyn_addr;
+};
+
+void get_dyn_info(int pid, struct link_map *lm, DynInfo &info);
 void get_sym_info(int pid, struct link_map *lm, SymInfo &info);
 Elf32_Addr find_symbol_in_linkmap(int pid, struct link_map *lm, char *sym_name);
 
@@ -75,9 +89,9 @@ Elf32_Addr get_image_addr(int pid)
  */
 void get_linkmap(int pid, struct link_map &map)
 {
-	Elf32_Ehdr *ehdr = new Elf32_Ehdr;
-	Elf32_Phdr *phdr = new Elf32_Phdr;
-	Elf32_Dyn *dyn = new Elf32_Dyn;
+	Elf32_Ehdr ehdr;
+	Elf32_Phdr phdr;
+	Elf32_Dyn dyn;
 	Elf32_Addr got;	// Address of GOT.
 
 	Elf32_Addr phdr_addr;
@@ -87,44 +101,40 @@ void get_linkmap(int pid, struct link_map &map)
 	int i = 0;
 
 	// Read the Elf header of the given process, and store it into "ehdr".
-	ptrace_read(pid, IMAGE_ADDR, ehdr, sizeof(Elf32_Ehdr));
+	ptrace_read(pid, IMAGE_ADDR, &ehdr, sizeof(Elf32_Ehdr));
 
-	phdr_addr = IMAGE_ADDR + ehdr->e_phoff;
+	phdr_addr = IMAGE_ADDR + ehdr.e_phoff;
 
 	// Read the Program header, and store it into "phdr".
-	ptrace_read(pid, phdr_addr, phdr, sizeof(Elf32_Phdr));
+	ptrace_read(pid, phdr_addr, &phdr, sizeof(Elf32_Phdr));
 
 	// Read and find the Program header with type "PT_DYNAMIC".
-	while (phdr->p_type != PT_DYNAMIC)
+	while (phdr.p_type != PT_DYNAMIC)
 	{
-		ptrace_read(pid, phdr_addr += sizeof(Elf32_Phdr), phdr,
+		ptrace_read(pid, phdr_addr += sizeof(Elf32_Phdr), &phdr,
 			sizeof(Elf32_Phdr));
 	}
 
-	dyn_addr = phdr->p_vaddr;
+	dyn_addr = phdr.p_vaddr;
 
 	// Read a Dynamic Entry from "dyn_addr" and store it into "dyn".
-	ptrace_read(pid, dyn_addr, dyn, sizeof(Elf32_Dyn));
+	ptrace_read(pid, dyn_addr, &dyn, sizeof(Elf32_Dyn));
 
 	// Read and find the Dynamic Entry with tag "DT_PLTGOT".
-	while (dyn->d_tag != DT_PLTGOT)
+	while (dyn.d_tag != DT_PLTGOT)
 	{
-		ptrace_read(pid, dyn_addr + i * sizeof(Elf32_Dyn), dyn,
+		ptrace_read(pid, dyn_addr + i * sizeof(Elf32_Dyn), &dyn,
 				sizeof(Elf32_Dyn));
 		i++;
 	}
 
-	got = dyn->d_un.d_ptr;
+	got = dyn.d_un.d_ptr;
 
 	// Read the link_map address from the GOT, and store it into "map_addr".
 	ptrace_read(pid, got + sizeof(Elf32_Addr), &map_addr, sizeof(Elf32_Addr));
 
 	// Read the link_map from the "map_addr" and store it into "map".
 	ptrace_read(pid, map_addr, &map, sizeof(struct link_map));
-
-	delete ehdr;
-	delete phdr;
-	delete dyn;
 }
 
 /*
@@ -147,10 +157,12 @@ void get_sym_info(int pid, struct link_map *lm, SymInfo &info)
 		case DT_SYMTAB:
 			info.symtab = dyn->d_un.d_ptr;
 			//puts("DT_SYMTAB");
+			printf("SymInfo.symtab = 0x%08x\n", info.symtab);
 			break;
 		case DT_STRTAB:
 			info.strtab = dyn->d_un.d_ptr;
 			//puts("DT_STRTAB");
+			printf("SymInfo.strtab = 0x%08x\n", info.strtab);
 			break;
 		case DT_HASH:
 			ptrace_read(pid, dyn->d_un.d_ptr + lm->l_addr + sizeof(Elf32_Word), &info.nchains, sizeof(info.nchains));
@@ -159,17 +171,21 @@ void get_sym_info(int pid, struct link_map *lm, SymInfo &info)
 		case DT_JMPREL:
 			info.jmprel = dyn->d_un.d_ptr;
 			//puts("DT_JMPREL");
+			printf("SymInfo.jmprel = 0x%08x\n", info.jmprel);
 			break;
 		case DT_PLTRELSZ:
 			//puts("DT_PLTRELSZ");
 			info.totalrelsize = dyn->d_un.d_val;
+			printf("SymInfo.totalrelsize = %d\n", info.totalrelsize);
 			break;
 		case DT_RELAENT:
 			info.relsize = dyn->d_un.d_val;
+			printf("SymInfo.relsize = 0x%08x\n", info.relsize);
 			//puts("DT_RELAENT");
 			break;
 		case DT_RELENT:
 			info.relsize = dyn->d_un.d_val;
+			printf("SymInfo.relsize = 0x%08x\n", info.relsize);
 			//puts("DT_RELENT");
 			break;
 		}
@@ -191,6 +207,8 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name)
 	unsigned long sym_addr;
 	char str[128];
 
+	//SymInfo info;
+	// get_sym_info(pid, map, info);
 	sym_addr = find_symbol_in_linkmap(pid, map, sym_name);
 	if (sym_addr)
 		return sym_addr;
@@ -336,27 +354,39 @@ Elf32_Off find_symbol_in_file(const char *file_name, char *sym_name)
 	return ret;
 }
 
-/* 查找符号的重定位地址 */
-unsigned long find_sym_in_rel(int pid, Elf32_Addr dyn_addr, char *sym_name)
+Elf32_Addr find_sym_in_rel_linkmap(int pid, struct link_map *lm,
+		char *sym_name)
 {
-	Elf32_Rel *rel = (Elf32_Rel *) malloc(sizeof(Elf32_Rel));
-	Elf32_Sym *sym = (Elf32_Sym *) malloc(sizeof(Elf32_Sym));
-	unsigned int i;
-	char str[128];
-	unsigned long ret;
+	Elf32_Addr ret = 0;
+
+	Elf32_Ehdr ehdr;
+	Elf32_Rel rel;
+	Elf32_Sym sym;
+
+	char str[1024];
+
 	DynInfo info;
 
-	get_dyn_info(pid, dyn_addr, info);
+	ptrace_read(pid, lm->l_addr, &ehdr, sizeof(Elf32_Ehdr));
+	if(ehdr.e_type != ET_DYN && ehdr.e_type != ET_EXEC)
+	{
+		return 0;
+	}
+
+	get_dyn_info(pid, lm, info);
+	//print_hex((char *)&info, sizeof(info));
+
+	Elf32_Word i;
 
 	for (i = 0; i < info.nrels; i++)
 	{
-		ptrace_read(pid, (unsigned long) (info.jmprel + i * sizeof(Elf32_Rel)), rel,
+		ptrace_read(pid, (unsigned long) (info.jmprel + i * sizeof(Elf32_Rel)), &rel,
 				sizeof(Elf32_Rel));
-		if (ELF32_R_SYM(rel->r_info))
+		if (ELF32_R_SYM(rel.r_info))
 		{
-			ptrace_read(pid, info.symtab + ELF32_R_SYM(rel->r_info)
-					* sizeof(Elf32_Sym), sym, sizeof(Elf32_Sym));
-			ptrace_readstr(pid, info.strtab + sym->st_name, str, sizeof(str));
+			ptrace_read(pid, info.symtab + ELF32_R_SYM(rel.r_info)
+					* sizeof(Elf32_Sym), &sym, sizeof(Elf32_Sym));
+			ptrace_readstr(pid, info.strtab + sym.st_name, str, sizeof(str));
 			if (strcmp(str, sym_name) == 0)
 			{
 				break;
@@ -367,58 +397,132 @@ unsigned long find_sym_in_rel(int pid, Elf32_Addr dyn_addr, char *sym_name)
 	if (i == info.nrels)
 		ret = 0;
 	else
-		ret = rel->r_offset;
-
-	free(rel);
+	{
+		//printf("[[0x%08x]]ret\n", lm->l_addr + rel.r_offset);
+		ret = lm->l_addr + rel.r_offset;
+	}
 
 	return ret;
+}
+
+//Elf32_Addr find_sym_in_rel_linkmap(int pid, struct link_map *lm,
+//		char *sym_name)
+/* 查找符号的重定位地址 */
+Elf32_Addr find_sym_in_rel(int pid, struct link_map *map, char *sym_name)
+{
+	struct link_map lm;
+
+	Elf32_Addr sym_addr = 0;
+	sym_addr = find_sym_in_rel_linkmap(pid, map, sym_name);
+
+	if(sym_addr)
+	{
+		return sym_addr;
+	}
+
+	if(!map->l_next)
+	{
+		return 0;
+	}
+
+	ptrace_read(pid, (Elf32_Addr)map->l_next, &lm, sizeof(lm));
+	sym_addr = find_sym_in_rel_linkmap(pid, &lm, sym_name);
+
+	while(!sym_addr && lm.l_next)
+	{
+		ptrace_read(pid, (Elf32_Addr)lm.l_next, &lm, sizeof(lm));
+
+		if((sym_addr = find_sym_in_rel_linkmap(pid, &lm, sym_name)))
+			break;
+	}
+
+	return sym_addr;
 }
 
 /*
  在进程自身的映象中（即不包括动态共享库，无须遍历link_map链表）获得各种动态信息
  */
-void get_dyn_info(int pid, Elf32_Addr dyn_addr, DynInfo &info)
+void get_dyn_info(int pid, struct link_map *map, DynInfo &info)
 {
+	const Elf32_Addr BASE_ADDR = map->l_addr;
+
+	Elf32_Ehdr ehdr;
+	Elf32_Phdr phdr;
 	Elf32_Dyn *dyn = (Elf32_Dyn *) malloc(sizeof(Elf32_Dyn));
+
+	Elf32_Addr phdr_addr;
 	int i = 0;
 
-	ptrace_read(pid, dyn_addr + i * sizeof(Elf32_Dyn), dyn, sizeof(Elf32_Dyn));
+	// Read the Elf header of the given process, and store it into "ehdr".
+	ptrace_read(pid, BASE_ADDR, &ehdr, sizeof(Elf32_Ehdr));
+
+	phdr_addr = BASE_ADDR + ehdr.e_phoff;
+
+	// Read the Program header, and store it into "phdr".
+	ptrace_read(pid, phdr_addr, &phdr, sizeof(Elf32_Phdr));
+
+	// Read and find the Program header with type "PT_DYNAMIC".
+	int ii = 1;
+	while (phdr.p_type != PT_DYNAMIC && ii < ehdr.e_phnum)
+	{
+		ptrace_read(pid, phdr_addr += sizeof(Elf32_Phdr), &phdr,
+			sizeof(Elf32_Phdr));
+		++ii;
+	}
+	if(ii == ehdr.e_phnum)
+	{
+		printf("get_dyn_info error!\n");
+		return;
+	}
+
+	info.dyn_addr = BASE_ADDR + phdr.p_vaddr;
+
+	i = 0;
+	ptrace_read(pid, info.dyn_addr + i * sizeof(Elf32_Dyn), dyn, sizeof(Elf32_Dyn));
 
 	i++;
 	while (dyn->d_tag)
 	{
+		//printf("Trace here!\n");
 		switch (dyn->d_tag)
 		{
 		case DT_SYMTAB:
-			puts("DT_SYMTAB");
+			//puts("DT_SYMTAB");
 			info.symtab = dyn->d_un.d_ptr;
+			//printf("DynInfo.symtab = 0x%08x\n", info.symtab);
 			break;
 		case DT_STRTAB:
 			info.strtab = dyn->d_un.d_ptr;
 			//puts("DT_STRTAB");
+			//printf("DynInfo.strtab = 0x%08x\n", info.strtab);
 			break;
 		case DT_JMPREL:
 			info.jmprel = dyn->d_un.d_ptr;
 			//puts("DT_JMPREL");
+			//printf("DynInfo.jmprel = 0x%08x\n", info.jmprel);
 			break;
 		case DT_PLTRELSZ:
 			info.totalrelsize = dyn->d_un.d_val;
 			//puts("DT_PLTRELSZ");
+			//printf("DynInfo.totalrelsize = 0x%08x\n", info.totalrelsize);
 			break;
 		case DT_RELAENT:
 			info.relsize = dyn->d_un.d_val;
 			//puts("DT_RELAENT");
+			//printf("DynInfo.relsize = %d\n", info.relsize);
 			break;
 		case DT_RELENT:
 			info.relsize = dyn->d_un.d_val;
 			//puts("DT_RELENT");
+			//printf("DynInfo.relsize = %d\n", info.relsize);
 			break;
 		}
 
-		ptrace_read(pid, dyn_addr + i * sizeof(Elf32_Dyn), dyn,
+		ptrace_read(pid, info.dyn_addr + i * sizeof(Elf32_Dyn), dyn,
 				sizeof(Elf32_Dyn));
 		i++;
 	}
+
 
 	info.nrels = info.totalrelsize / info.relsize;
 

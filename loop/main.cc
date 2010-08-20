@@ -10,11 +10,12 @@
 #include <fcntl.h>
 using namespace std;
 
+const int MAX_LOOP = 6000;
 int main()
 {
-	pid_t pid = open("file.txt", O_RDONLY );
+	pid_t pid = open("file.txt", O_RDONLY | O_CREAT);
 	int tmp;
-	for(int i = 0;i<3000;i++)
+	for(int i = 0;i<MAX_LOOP;i++)
 	{
 		//cout << "Sleeping: " << i << endl;
 
@@ -22,7 +23,7 @@ int main()
 		//seek(pid, -1);
 		read(pid, &tmp, sizeof(tmp));
 
-		printf("[0x%08x]\n", tmp);
+		printf("[0x%08x][0x%08x]\n", tmp, MAX_LOOP - tmp);
 		sleep(1);
 	}
 

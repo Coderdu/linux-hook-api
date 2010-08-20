@@ -229,7 +229,7 @@ Elf32_Addr find_symbol(int pid, struct link_map *map, char *sym_name)
 		if (str[0] == '\0')
 			continue;
 
-		//printf("Finding in file [%s]\n", str);
+		printf("Finding in file [%s]\n", str);
 
 		if ((sym_addr = find_symbol_in_linkmap(pid, lm, sym_name)))
 			break;

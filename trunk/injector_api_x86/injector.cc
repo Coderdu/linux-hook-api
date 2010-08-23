@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <map>
 
 namespace Injector
 {
@@ -85,6 +86,18 @@ void inject_so(pid_t pid, char *so_name)
 	_do_inject(pid, sym_addr, so_name);
 
 	ptrace_detach(pid);
+}
+
+void test_map()
+{
+	std::map<int, int> mp;
+	std::pair<int, int> p;
+	p.first = 1;
+	p.second = 1;
+	mp.insert(p);
+
+	mp.insert(p);
+
 }
 
 } // End of namespace Injector.

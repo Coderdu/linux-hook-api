@@ -15,6 +15,7 @@ namespace Injector
 {
 
 void inject_so(pid_t pid, char *so_name);
+void test_map();
 
 }
 
